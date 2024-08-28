@@ -2,6 +2,8 @@
   hosts: [semaphore]
   gather_facts: no
   tasks:
+    - name: Docker
+      ansible.builtin.include_tasks: tasks/docker.yml
     - name: ensure data directories exist
       ansible.builtin.file:
         path:
