@@ -6,10 +6,10 @@ services:
     image: semaphoreui/semaphore:latest
     environment:
       SEMAPHORE_DB_DIALECT: bolt
-      SEMAPHORE_ADMIN_PASSWORD: changeme
-      SEMAPHORE_ADMIN_NAME: admin
-      SEMAPHORE_ADMIN_EMAIL: admin@localhost
-      SEMAPHORE_ADMIN: admin
+      SEMAPHORE_ADMIN_PASSWORD: ${SEMAPHORE_ADMIN_PASSWORD:-changeme}
+      SEMAPHORE_ADMIN_NAME: ${SEMAPHORE_ADMIN_NAME:-admin}
+      SEMAPHORE_ADMIN_EMAIL: ${SEMAPHORE_ADMIN_EMAIL:-admin@localhost}
+      SEMAPHORE_ADMIN: ${SEMAPHORE_ADMIN:-admin}
     volumes:
       - /opt/semaphore/semaphore_config:/etc/semaphore
       - /opt/semaphore/semaphore_data:/var/lib/semaphore
