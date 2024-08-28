@@ -1,24 +1,29 @@
 ---
-- name: Upgrade All Packages To The Latest Version
-  ansible.builtin.apt:
-    update_cache: true
-    upgrade: true
-
-- name: Install Core Dependencies, Clean APT, & Remove Old Programs
-  ansible.builtin.apt:
-    name:
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - gnupg-agent
-      - htop
-      - ncdu
-      - sudo
-      - unattended-upgrades
-      - vim
-      - git
-      - zsh
-    state: present
-    install_recommends: true
-    autoremove: true
-    autoclean: true
+- name: Debian Config - Debian Baseline & Docker Install
+  hosts: all
+  gather_facts: true
+  become: true
+  tasks:
+    - name: Upgrade All Packages To The Latest Version
+      ansible.builtin.apt:
+        update_cache: true
+        upgrade: true
+    
+    - name: Install Core Dependencies, Clean APT, & Remove Old Programs
+      ansible.builtin.apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg-agent
+          - htop
+          - ncdu
+          - sudo
+          - unattended-upgrades
+          - vim
+          - git
+          - zsh
+        state: present
+        install_recommends: true
+        autoremove: true
+        autoclean: true
