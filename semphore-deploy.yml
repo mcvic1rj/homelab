@@ -1,0 +1,45 @@
+- name: Run using a project directory
+  hosts: [semaphore]
+  gather_facts: no
+  tasks:
+    - name: ensure data directories exist
+      ansible.builtin.file:
+        path:
+          - /opt/semaphore
+          - /opt/semaphore/semaphore_data
+          - /opt/semaphore/tmp_config
+          - /opt/semaphore/semaphore_config
+        state: directory
+        mode: '0750'
+    - name: deploy compose file
+      ansible.builtin.copy:
+        src: ./compose/semaphore/semaphore.yml
+        dest: /opt/semaphore/compose.yml
+        mode: '0644'
+    - name: deploy compose file
+      ansible.builtin.copy:
+        src: ./compose/semaphore/.env
+        dest: /opt/semaphore/.env
+        mode: '0640'
+    - name: Tear down existing services
+      docker_compose:
+        project_src: /opt/semaphore
+        state: absent
+        files: compose.yml
+    - name: Create and start services
+      docker_compose:
+        project_src: /opt/semaphore
+        files: compose.yml
+      register: output
+    - debug:
+        var: output
+    - name: Run `docker-compose up` again
+      docker_compose:
+        project_src: /opt/semaphore
+        build: no
+        files: compose.yml
+      register: output
+    - debug:
+        var: output
+    - assert:
+        that: "not output.changed "
