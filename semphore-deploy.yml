@@ -1,6 +1,6 @@
 - name: Run using a project directory
   hosts: [semaphore]
-  gather_facts: no
+  gather_facts: yes
   tasks:
     - name: Docker
       ansible.builtin.include_tasks: tasks/docker.yml
