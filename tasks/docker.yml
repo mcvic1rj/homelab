@@ -1,0 +1,35 @@
+---
+- name: add Debian Docker repo
+  ansible.builtin.deb822_repository:
+    name: docker
+    types: [deb]
+    uris: "https://download.docker.com/linux/debian"
+    components: [binary]
+    signed_by: https://download.docker.com/linux/debian/gpg
+    state: present
+    enabled: true
+
+
+- name: Install Docker Engine, Docker CLI, Containerd, & Docker Compose
+  ansible.builtin.apt:
+    update_cache: true
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose-plugin
+      - docker-buildx-plugin
+    state: present
+    install_recommends: true
+
+- name: Set Docker Registry Proxy Configuration
+  ansible.builtin.copy:
+    dest: "/etc/docker/daemon.json"
+    owner: root
+    group: root
+    mode: '0644'
+    content: |
+      {
+              "metrics-addr": "127.0.0.1:9323",
+              "experimental": true
+      }
