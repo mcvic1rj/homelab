@@ -7,13 +7,14 @@
       ansible.builtin.include_tasks: tasks/docker.yml
     - name: ensure data directories exist
       ansible.builtin.file:
-        path:
-          - /opt/semaphore
-          - /opt/semaphore/semaphore_data
-          - /opt/semaphore/tmp_config
-          - /opt/semaphore/semaphore_config
+        path: "{{ item }}"
         state: directory
         mode: '0750'
+      loop:
+        - /opt/semaphore
+        - /opt/semaphore/semaphore_data
+        - /opt/semaphore/tmp_config
+        - /opt/semaphore/semaphore_config
     - name: deploy compose file
       ansible.builtin.copy:
         src: ./compose/semaphore/semaphore.yml
