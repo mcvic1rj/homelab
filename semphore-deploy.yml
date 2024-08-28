@@ -15,6 +15,11 @@
         - /opt/semaphore/semaphore_data
         - /opt/semaphore/tmp_config
         - /opt/semaphore/semaphore_config
+    - name: install python docker
+      ansible.builtin.apt:
+        name:
+          - python3-docker
+        state: present
     - name: deploy compose file
       ansible.builtin.copy:
         src: ./compose/semaphore/semaphore.yml
