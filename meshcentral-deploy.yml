@@ -1,0 +1,30 @@
+- name: Run using a project directory
+  hosts: [meshcentral]
+  gather_facts: yes
+  become: true
+  tasks:
+    - name: Docker
+      ansible.builtin.include_tasks: tasks/docker.yml
+    - name: ensure data directories exist
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0777'
+        owner: 1000
+        group: 1000
+      loop:
+        - /opt/meshcentral
+        - /opt/meshcentral/data
+        - /opt/meshcentral/user_files
+        - /opt/meshcentral/backup
+        - /opt/meshcentral/web
+    - name: deploy compose file
+      ansible.builtin.copy:
+        src: ./compose/meshcentral/compose.yml
+        dest: /opt/meshcentral/compose.yml
+        mode: '0644'
+    - name: deploy compose file
+      ansible.builtin.copy:
+        src: ./compose/meshcentral/.env
+        dest: /opt/meshcentral/.env
+        mode: '0640'
