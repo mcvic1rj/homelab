@@ -3,6 +3,7 @@ semaphore
 docker_generic
 pihole
 meshcentral
+ctfd-host
 
 [docker_generic]
 10.99.99.105
@@ -20,3 +21,6 @@ meshcentral
 
 [proxmox_cluster]
 10.100.0.151 custom_hostname=pvenode.int.mcvicar.io
+
+[ctfd-host]
+10.99.99.53
