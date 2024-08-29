@@ -27,7 +27,7 @@
         owner: root
         group: root
         mode: '0644'
-      register: custom_host_change
+      register: custom_host_changed
     - name: install python docker
       ansible.builtin.apt:
         name:
