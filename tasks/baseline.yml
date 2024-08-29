@@ -28,4 +28,7 @@
     comment: John Doe Ansible
     uid: 1040
     groups: sudo,adm
-    ssh_public_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDv1NKKDovf43f6128KUGZvDHdm824wR/+gxfcfQrlM
+- name: "Add authorized keys"
+  authorized_key:
+    user: "ansible_u"
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDv1NKKDovf43f6128KUGZvDHdm824wR/+gxfcfQrlM"
