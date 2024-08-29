@@ -8,14 +8,7 @@
         project_src: /opt/semaphore
         state: absent
         files: compose.yml
-    - name: Create and start services
-      docker_compose:
-        project_src: /opt/semaphore
-        files: compose.yml
-      register: output
-    - debug:
-        var: output
-    - name: Run `docker-compose up` again
+    - name: Run `docker-compose up`
       docker_compose:
         project_src: /opt/semaphore
         build: no
@@ -23,5 +16,3 @@
       register: output
     - debug:
         var: output
-    - assert:
-        that: "not output.changed "
