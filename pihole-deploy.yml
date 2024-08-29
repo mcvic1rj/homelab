@@ -34,4 +34,5 @@
     - name: mask systemd-resolv #this is needed because pihole listens to port 53
       ansible.builtin.systemd_service:
         name: systemd-resolved
-        state: masked
+        state: stopped
+        masked: true
