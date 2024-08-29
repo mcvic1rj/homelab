@@ -1,0 +1,9 @@
+[docker_hosts:children]
+semaphore
+docker_generic
+
+[docker_generic]
+10.99.99.105
+
+[semaphore]
+10.99.99.212
