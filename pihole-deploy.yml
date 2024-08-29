@@ -44,6 +44,8 @@
         name: systemd-resolved
         state: stopped
         masked: true
+    - debug:
+        var: custom_host_changed
     - name: Tear down existing services
       docker_compose:
         project_src: /opt/pihole/
