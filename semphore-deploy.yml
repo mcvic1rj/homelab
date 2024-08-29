@@ -28,6 +28,17 @@
         src: ./compose/semaphore/semaphore.yml
         dest: /opt/semaphore/compose.yml
         mode: '0644'
+    - name: set credentials in file
+      ansible.builtin.replace:
+        path: /opt/semaphore/compose.yml
+        regexp: 'SEMAPHORE_ADMIN_PASSWORD_VAULT'
+        replace: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          66363737653234303832663766343938633237356463636663653035326338313634356564356232
+          6437373961383764653037306634363633366332653830610a313466323934656164383136346566
+          37313934366361643234343339363338313530323164626663633164636139303961363164363663
+          3166623564393438620a663664323364366634623338333031356331323030653633303139613236
+          6562
     - name: deploy compose file
       ansible.builtin.copy:
         src: ./compose/semaphore/.env
