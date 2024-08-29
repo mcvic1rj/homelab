@@ -45,11 +45,3 @@
         src: ./compose/semaphore/.env
         dest: /opt/semaphore/.env
         mode: '0640'
-    - name: Run `docker-compose up`
-      docker_compose:
-        project_src: /opt/semaphore
-        build: no
-        files: compose.yml
-      register: output
-    - debug:
-        var: output
