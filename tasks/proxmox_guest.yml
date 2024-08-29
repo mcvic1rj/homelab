@@ -1,0 +1,11 @@
+---
+- name: Install proxmox guest gnupg-agent
+  ansible.builtin.apt:
+    name:
+      - qemu-guest-agent
+    state: present
+- name: ensure service is started
+  ansible.builtin.systemd_service:
+    name: qemu-guest-agent.service
+    state: started
+    enabled: true

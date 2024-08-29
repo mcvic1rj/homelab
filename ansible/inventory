@@ -8,8 +8,11 @@ pihole
 10.99.99.160
 
 [semaphore]
-10.99.99.212
+10.99.99.212 custom_hostname=semaphore.int.mcvicar.io
 
 [pihole]
 10.99.99.157
-10.99.99.60
+10.99.99.60 custom_hostname=pihole.int.mcvicar.io vmid=107
+
+[proxmox_cluster]
+10.100.0.151 custom_hostname=pvenode.int.mcvicar.io
