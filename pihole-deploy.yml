@@ -20,6 +20,13 @@
         - /opt/pihole
         - /opt/pihole/etc-pihole
         - /opt/pihole/etc-dnsmasq.d
+    - name: add internal host names
+      ansible.builtin.copy:
+        dest: /opt/pihole/etc-pihole/custom.list
+        src: ./compose/pihole/custom.list
+        owner: root
+        group: root
+        mode: '0644'
     - name: install python docker
       ansible.builtin.apt:
         name:
