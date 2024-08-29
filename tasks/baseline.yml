@@ -18,6 +18,7 @@
       - vim
       - git
       - zsh
+      - qemu-guest-agent
     state: present
     install_recommends: true
     autoremove: true
