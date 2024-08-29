@@ -6,3 +6,7 @@
   tasks:
     - name: Baseline
       ansible.builtin.include_tasks: tasks/baseline.yml
+    
+    - name: Docker
+      ansible.builtin.include_tasks: tasks/docker.yml
+      when: docker_hosts in group_names
