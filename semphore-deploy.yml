@@ -45,11 +45,6 @@
         src: ./compose/semaphore/.env
         dest: /opt/semaphore/.env
         mode: '0640'
-    - name: Tear down existing services
-      docker_compose:
-        project_src: /opt/semaphore
-        state: absent
-        files: compose.yml
     - name: Create and start services
       docker_compose:
         project_src: /opt/semaphore
