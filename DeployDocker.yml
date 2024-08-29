@@ -1,6 +1,6 @@
 ---
 - name: Debian Config - Debian Baseline & Docker Install
-  hosts: all
+  hosts: docker_hosts
   gather_facts: true
   become: true
   tasks:

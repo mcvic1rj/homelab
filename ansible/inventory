@@ -2,6 +2,7 @@
 semaphore
 docker_generic
 pihole
+meshcommander
 
 [docker_generic]
 10.99.99.105
@@ -13,6 +14,9 @@ pihole
 [pihole]
 10.99.99.157
 10.99.99.60 custom_hostname=pihole.int.mcvicar.io vmid=107
+
+[meshcommander]
+10.99.99.168 custom_hostname=remotemgr.int.mcvicar.io vmid=109
 
 [proxmox_cluster]
 10.100.0.151 custom_hostname=pvenode.int.mcvicar.io
