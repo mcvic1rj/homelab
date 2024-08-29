@@ -1,0 +1,29 @@
+- name: Run using a project directory
+  hosts: [pihole]
+  gather_facts: yes
+  become: true
+  tasks:
+    - name: Docker
+      ansible.builtin.include_tasks: tasks/docker.yml
+    - name: ensure data directories exist
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0774'
+        owner: 1000
+        group: 1000
+      loop:
+        - /opt/pihole
+        - /opt/pihole/etc-pihole
+        - /opt/pihole/etc-dnsmasq.d
+    - name: install python docker
+      ansible.builtin.apt:
+        name:
+          - python3-docker
+          - docker-compose
+        state: present
+    - name: deploy compose file
+      ansible.builtin.copy:
+        src: ./compose/pihole/compose.yml
+        dest: /opt/pihole/compose.yml
+        mode: '0644'

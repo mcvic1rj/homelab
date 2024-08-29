@@ -1,9 +1,13 @@
 [docker_hosts:children]
 semaphore
 docker_generic
+pihole
 
 [docker_generic]
 10.99.99.105
 
 [semaphore]
+10.99.99.212
+
+[pihole]
 10.99.99.212
