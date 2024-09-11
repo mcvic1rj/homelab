@@ -8,6 +8,7 @@ ctfd-host
 [docker_generic]
 10.99.99.105
 10.99.99.160
+10.99.99.177
 
 [semaphore]
 10.99.99.212 custom_hostname=semaphore.int.mcvicar.io
